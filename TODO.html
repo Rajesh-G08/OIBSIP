@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+</head>
+<body>
+  <div id="container">
+    <h1>Todo List</h1>
+    <input type="text" id="new-task" placeholder="Add new task">
+    <button id="add-task">Add Task</button>
+    <ul id="task-list"></ul>
+  </div>
+  
+  <script>
+    function addTask() {
+      // Get the value of the new task
+      var newTask = document.getElementById("new-task").value;
+      
+      // Create a new list item with the new task
+      var listItem = document.createElement("li");
+      listItem.textContent = newTask;
+      
+      // Add the list item to the task list
+      document.getElementById("task-list").appendChild(listItem);
+      
+      // Clear the input field
+      document.getElementById("new-task").value = "";
+    }
+    
+    function removeTask(task) {
+      // Remove the task from the task list
+      task.parentNode.removeChild(task);
+    }
+    
+    // Add event listener to "Add Task" button
+    document.getElementById("add-task").addEventListener("click", addTask);
+    
+    // Add event listener to task list to remove completed tasks
+    document.getElementById("task-list").addEventListener("click", function(e) {
+      if (e.target.tagName === "LI") {
+        removeTask(e.target);
+      }
+    });
+  </script>
+</body>
+</html>
